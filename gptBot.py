@@ -1,6 +1,7 @@
 import telebot
 from openai import OpenAI
 import os
+import time
 
 # Твои ключи
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -28,4 +29,10 @@ def respond(message):
     except Exception as e:
         bot.send_message(message.chat.id, f"Ошибка: {e}")
 
-bot.polling()
+while True:
+    try:
+        bot.polling(none_stop=True, interval=1, timeout=20)
+    except Exception as e:
+        print(f"Ошибка: {e}. Перезапуск через 5 секунд.")
+        time.sleep(5)
+
