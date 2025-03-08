@@ -14,7 +14,7 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 @bot.message_handler(commands=['chatid'])
 def send_chat_id(message):
-    bot.reply_to(message, f"ID этой группы:{message.chat.id}")
+    bot.send_message(message.chat.id, f"Chat ID этой группы: `{message.chat.id}`", parse_mode="Markdown")
 
 @bot.message_handler(func=lambda message: message.text.lower().startswith('чат'))
 def respond(message):
