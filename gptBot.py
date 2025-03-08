@@ -6,8 +6,12 @@ import os
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
+
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 client = OpenAI(api_key=OPENAI_API_KEY)
+
+def send_chat_id(message):
+    bot.reply_to(message, f"ID этой группы:{message.chat.id}")
 
 @bot.message_handler(func=lambda message: message.text.lower().startswith('чат'))
 def respond(message):
