@@ -3,6 +3,7 @@ from openai import OpenAI
 import os
 import time
 
+
 # Твои ключи
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
@@ -11,6 +12,7 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 client = OpenAI(api_key=OPENAI_API_KEY)
 
+@bot.message_handler(commands=['chatid'])
 def send_chat_id(message):
     bot.reply_to(message, f"ID этой группы:{message.chat.id}")
 
